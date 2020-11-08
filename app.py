@@ -1,9 +1,9 @@
 import mariadb
 import dbcreds
 
-print("welcome to cli social media")
-username = input("enter username: ")
-password = input("enter password: ")
+print("WELCOME TO HACKER TOWN")
+username = input("enter a cool username: ")
+password = input("enter a hard to crack password: ")
 
 conn = mariadb.connect(user=dbcreds.user, password=dbcreds.password, port=dbcreds.port, host=dbcreds.host, database=dbcreds.database)
 cursor = conn.cursor()
@@ -27,17 +27,17 @@ if user:
             conn.commit()
             print("exploit is added successfully")
         elif option =="2":
-            cursor.execute("SELECT * FROM exploits WHERE user_id = ?",[user[0],])
+            cursor.execute("SELECT * FROM exploits e INNER JOIN WHERE hackers h ON e.user_id =h.id ?",[user[0],])
             print("after query")
             posts = cursor.fetchall()
             print(posts)
             for post in posts:
                 print("exploits id:" + str(post[0]))
                 print("content: " +post[1])
-                
                 print("------------------") 
+                
         elif option == "3":    
-            cursor.execute("SELECT * FROM exploits e INNER JOIN hackers h ON e.user_id=h.id WHERE user_id != ?",[user[0],])
+            cursor.execute("SELECT * FROM exploits  INNER JOIN hackers ON WHERE user_id != ?",[user[0],])
             print("after query")
             posts = cursor.fetchall()
             print(posts)
@@ -46,13 +46,13 @@ if user:
                 print("content: " +post[1])
                 print("------------------") 
         elif option =="4":
-            print("goodbye")
+            print("gtfo n00b")
             break
         else:
             print("invalid entry") 
             
 else: 
-    print("password is wrong")               
+    print("you can do better than that")               
                    
 print(user)
 cursor.close()
